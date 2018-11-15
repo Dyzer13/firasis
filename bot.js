@@ -1,4 +1,7 @@
 const Discord = require('discord.js');
+var converter = require('number-to-words');
+converter.toOrdinal(21); // => “21st”
+
 const prefix = 'F'
 
 const client = new Discord.Client({ disableEveryone: true});
