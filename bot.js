@@ -22,8 +22,8 @@ client.on('warn', console.warn);
 client.on('error', console.error);
 
 client.on('ready', () => {
-    console.log(`Created By: MohmaedAlhassny`);
-    console.log(`Developed By: ! Abdulrhman ♥`);
+    console.log(`Created By: Michou`);
+    console.log(`Developed By: Michou`);
     console.log(`Guilds: ${client.guilds.size}`);
     console.log(`Users: ${client.users.size}`);
     client.user.setActivity('Alhassny Orders.',{type: 'WATCHING'});
