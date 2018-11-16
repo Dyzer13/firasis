@@ -26,12 +26,39 @@ const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
 const sql = require("sqlite");
 const dateFormat = require('dateformat'); 
 const pretty = require('pretty-ms') 
-const prefix = 'G.';
+const prefix = 'f';
 var table = require('table').table
 var ti={}  
 ,spee={}
 ,attentions={};
 
+cconst ytdl = require("ytdl-core");
+const { Client, Util } = require('discord.js');
+const getYoutubeID = require('get-youtube-id');
+const fetchVideoInfo = require('youtube-info');
+const YouTube = require('simple-youtube-api');
+const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
+const queue = new Map();
+
+/*
+البكجآت
+npm install discord.js
+npm install ytdl-core
+npm install get-youtube-id
+npm install youtube-info
+npm install simple-youtube-api
+npm install queue
+*/
+
+
+
+client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+    console.log(`in ${client.guilds.size} servers `)
+    console.log(`[Codes] ${client.users.size}`)
+    client.user.setStatus("idle")
+});
+//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
 client.on('message', async msg => { // eslint-disable-line
 	if (msg.author.bot) return undefined;
 	//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
@@ -82,9 +109,9 @@ client.on('message', async msg => { // eslint-disable-line
 			        .setDescription(`**الرجآء من حضرتك إختيآر رقم المقطع** :
 ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 //by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-					.setFooter("Galaxy")
+					.setFooter(":iphone: ")
 					msg.channel.sendEmbed(embed1).then(message =>{message.delete(20000)})
-					
+
 					// eslint-disable-next-line max-depth
 					try {
 						var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
@@ -223,23 +250,33 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`بدء تشغيل : **${song.title}**`);
 }//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
 
+
+
+
+
+
+
+
+
+
 client.on("message", message => {
- if (message.content === `${prefix}`) {
-  const embed = new Discord.RichEmbed() //by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-      .setColor("#000000")//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-      .setDescription(`
-${prefix}play ⇏ لتشغيل أغنية برآبط أو بأسم
-${prefix}skip ⇏ لتجآوز الأغنية الحآلية
-${prefix}pause ⇏ إيقآف الأغنية مؤقتا
-${prefix}resume ⇏ لموآصلة الإغنية بعد إيقآفهآ مؤقتا
-${prefix}vol ⇏ لتغيير درجة الصوت 100 - 0
-${prefix}stop ⇏ لإخرآج البوت من الروم
-${prefix}np ⇏ لمعرفة الأغنية المشغلة حآليا
-${prefix}queue ⇏ لمعرفة قآئمة التشغيل
- `)//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-   message.channel.sendEmbed(embed)//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-    
-   }
-   });
+ if (message.content === "fhelp") {
+  const embed = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setDescription('👑أوامر الموسيقى👑')
+	  .addField('❖-|.play', `🎸لتشغيل أغنية برآبط أو بأسم🎵`)
+	  .addField('❖-|.skip', `♠لتجآوز الأغنية الحآلية🎺`)
+	  .addField('❖-|.pause', `🚩إيقآف الأغنية مؤقتا💯`)
+	  .addField('❖-|.resume', `🎧لموآصلة الإغنية بعد إيقآفهآ مؤقتا🎵`)
+          .addField('❖-|s.vol', `🔊تغيير درجة الصوت 100 - 0🔇`)
+          .addField('❖-|s.stop', `🔘لإخرآج البوت من الروم❗`)
+          .addField('❖-|s.nb', `🎼لمعرفة الأغنية المشغلة حآليا🎷`)
+          .addField('❖-|s.queue', `🎸لمعرفة قآئمة التشغيل🎤`)
+          .addField('❖-|s.music', `🔰لأرسال الأوامر بلشات🔰`)
+  message.author.send({embed});
+      message.channel.send(":white_check_mark: | Check Your DM تم الأرسال بلخاص")
+
+ }
+});
 
 client.login(process.env.BOT_TOKEN)
